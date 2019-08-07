@@ -10,14 +10,14 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 
-	income = db.Column(db.Integer, default=0, nullable=False)
-	expense = db.Column(db.String(200), nullable=False)
+	income = db.Column(db.Integer, default=0)
+	item = db.Column(db.String(200))
 	cost = db.Column(db.Integer, default=0, nullable=False)
 	completed = db.Column(db.Integer, default=0)
 	date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
 	def __repr__(self):
-		return '<Task %r>' % self.id
+		return '<Cost %r>' % self.id
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -70,6 +70,30 @@ def home():
 @app.route("/calculator")
 def calculator():
 	return render_template("calculator.html")
-    
+
+
+
+@app.route("/calculator/add", methods=['POST', 'GET'])
+def add_item():
+
+	if request.method == 'POST':
+		#item_val = request.form['item']
+		cost_val = request.form['cost']
+		new_item= Todo(cost=cost_val)
+
+		# try:
+		db.session.add(cost_val)
+		db.session.commit()
+		return redirect('/calculator')
+
+
+
+		# except:
+		# 	return 'errrrorrrr'
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True) 
+
+
