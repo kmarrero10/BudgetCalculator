@@ -9,6 +9,36 @@
 
     {% block body %}
 
-    <h1>Calculator</h1>
+    <h1>Budget Calculator</h1>
+
+    <table>
     
+
+      <tr>
+        <th>Expense</th>
+        <th>Amount</th>
+      </tr>
+
+      <tr>
+        <td>
+          <form action="/" method = "POST">
+          <input type="text" name="expense" id="expense">
+          </form>
+      </td>
+        <td>
+          <form action="/" method = "POST">
+          <input type="text" name="cost" id="cost">
+          <input type="submit" value="Add Expense">
+          </form>
+      </td>
+      </tr>
+
+    </table>
+
+    <br>
+
+    <br>
+
+    <a href="/">Return Home</a>
+
     {% endblock %}
